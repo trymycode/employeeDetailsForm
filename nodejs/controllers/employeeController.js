@@ -77,12 +77,13 @@ router.put('/:id',(req, res, next)=>{
 
 // // delete employee details
 router.delete('/employee/:id',(req, res, next)=>{
+  if(!ObjectId.isValid(req.params.id))
+      return res.status(400).send("No record found with this given id:- " + req.params.id);
   // logic to remove an employee
-  Employee.remove({_id: req.params.id}, function(err, result){
-    if(err){
-      res.json(err);
-    }else {
-      res.json(result);
+  Employee.findByIdAndRemove(req.params.id, (err, details)=>{
+    if(!err){res.send("Employee deleted successfully");}
+    else {
+      console.log("Error in employee update:-" + JSON.stringify(err, undefined, 2));
     }
   })
 });
