@@ -31,7 +31,7 @@ router.get('/:id', (req, res, next)=>{
   
 })
 // add new employee details
-router.post('/employee',(req, res, next)=>{
+router.post('/employees',(req, res, next)=>{
   // logic to add employee
   let newEmployee = new Employee({
     name: req.body.name,

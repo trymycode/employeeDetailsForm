@@ -23,7 +23,7 @@ mongoose.connection.on('error', (err)=>{
 const port = 3000;
 // ==adding middlewares==
 // adding cors
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:4200' }));
 // adding body-parser
 app.use(bodyParser.json());
 
