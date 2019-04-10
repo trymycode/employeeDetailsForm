@@ -8,7 +8,7 @@ var path= require('path');
 var app = express();
 const route = require("./controllers/employeeController");
 // connecting the server with the mongodb database using mongoose.connect function
-mongoose.connect('mongodb://localhost:27017/employeelist');
+mongoose.connect('mongodb://localhost:27017/employeelist', { useNewUrlParser: true });
 
 // connection messages
 mongoose.connection.on('connected', ()=>{

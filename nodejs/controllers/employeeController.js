@@ -76,16 +76,15 @@ router.put('/:id',(req, res, next)=>{
 });
 
 // // delete employee details
-router.delete('/employee/:id',(req, res, next)=>{
-  if(!ObjectId.isValid(req.params.id))
-      return res.status(400).send("No record found with this given id:- " + req.params.id);
-  // logic to remove an employee
-  Employee.findByIdAndRemove(req.params.id, (err, details)=>{
-    if(!err){res.send("Employee deleted successfully");}
-    else {
-      console.log("Error in employee update:-" + JSON.stringify(err, undefined, 2));
-    }
-  })
+
+router.delete('/employee/:id', (req, res) => {
+  if (!ObjectId.isValid(req.params.id))
+      return res.status(400).send(`No record with given id : ${req.params.id}`);
+
+  Employee.findByIdAndRemove(req.params.id, (err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Employee Delete :' + JSON.stringify(err, undefined, 2)); }
+  });
 });
 
 module.exports = router;

@@ -12,15 +12,20 @@ export class EmployeeService {
   employees: Employee[];
   readonly baseURL = "http://localhost:3000/api/employees";
   constructor(private http: HttpClient) { }
-
+  // post employee in database
   postEmployee(emp: Employee){
       return this.http.post(this.baseURL, emp);
   }
-
+ // get employees from database
   getEmployeeList(){
     return this.http.get(this.baseURL);
   }
+  // edit employess in database
   putEmployee(emp: Employee) {
-    return this.http.put(this.baseURL + `/${emp._id}`, emp);
+    return this.http.put("http://localhost:3000/api" + `/${emp._id}`, emp);
+  }
+  // delete employee in database
+  deleteEmployee(_id: string) {
+    return this.http.delete("http://localhost:3000/api/employee" + `/${_id}`);
   }
 }
